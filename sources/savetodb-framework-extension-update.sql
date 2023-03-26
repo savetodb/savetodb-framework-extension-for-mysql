@@ -1,15 +1,15 @@
 -- =============================================
 -- SaveToDB Framework Extension for MySQL
--- Version 10.6, December 13, 2022
+-- Version 10.8, January 9, 2023
 --
 -- This script updates SaveToDB Framework 9 to the latest version
 --
--- Copyright 2022 Gartle LLC
+-- Copyright 2022-2023 Gartle LLC
 --
 -- License: MIT
 -- =============================================
 
-SELECT CASE WHEN 1004 <= CAST(substr(HANDLER_CODE, 1, instr(HANDLER_CODE, '.') - 1) AS unsigned) * 100 + CAST(substr(HANDLER_CODE, instr(HANDLER_CODE, '.') + 1) AS decimal) THEN 'SaveToDB Framework is up-to-date. Update skipped' ELSE HANDLER_CODE END AS check_version FROM xls.handlers WHERE TABLE_SCHEMA = 'xls' AND TABLE_NAME = 'savetodb_framework_extension' AND COLUMN_NAME = 'version' AND EVENT_NAME = 'Information' LIMIT 1;
+SELECT CASE WHEN 1008 <= CAST(substr(HANDLER_CODE, 1, instr(HANDLER_CODE, '.') - 1) AS unsigned) * 100 + CAST(substr(HANDLER_CODE, instr(HANDLER_CODE, '.') + 1) AS decimal) THEN 'SaveToDB Framework is up-to-date. Update skipped' ELSE HANDLER_CODE END AS check_version FROM xls.handlers WHERE TABLE_SCHEMA = 'xls' AND TABLE_NAME = 'savetodb_framework_extension' AND COLUMN_NAME = 'version' AND EVENT_NAME = 'Information' LIMIT 1;
 
 UPDATE xls.handlers t,
     (
@@ -26,7 +26,7 @@ UPDATE xls.handlers t,
         , NULL AS MENU_ORDER
         , NULL AS EDIT_PARAMETERS
 
-    UNION ALL SELECT 'xls', 'savetodb_framework_extension', 'version', 'Information', NULL, NULL, 'ATTRIBUTE', '10.4', NULL, NULL, NULL
+    UNION ALL SELECT 'xls', 'savetodb_framework_extension', 'version', 'Information', NULL, NULL, 'ATTRIBUTE', '10.8', NULL, NULL, NULL
 
     ) s
 SET
@@ -90,7 +90,7 @@ FROM
         , NULL AS MENU_ORDER
         , NULL AS EDIT_PARAMETERS
 
-    UNION ALL SELECT 'xls', 'savetodb_framework_extension', 'version', 'Information', NULL, NULL, 'ATTRIBUTE', '10.4', NULL, NULL, NULL
+    UNION ALL SELECT 'xls', 'savetodb_framework_extension', 'version', 'Information', NULL, NULL, 'ATTRIBUTE', '10.8', NULL, NULL, NULL
 
     ) s
     LEFT OUTER JOIN xls.handlers t ON
